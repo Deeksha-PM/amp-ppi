@@ -16,26 +16,8 @@ st.markdown("---")
 st.text("")
 
 st.title("Tutorial")
-st.markdown(
-    """
-    <a href="static/tutorial.pdf" target="_blank" style="text-decoration: none;">
-        <div style="
-            background-color: #ff4b4b;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            border-radius: 10px;
-            font-size: 24px;
-            font-weight: bold;
-            margin: 20px 0;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-        ">
-            OPEN PDF TUTORIAL
-        </div>
-    </a>
-    """,
-    unsafe_allow_html=True
-)
+with open("static/tutorial.pdf", "rb") as f:
+    st.download_button("Download Tutorial File", f, "tutorial_amp-ppi.pdf")
 
 st.text("")
 st.markdown("<div style='background-color:#32CD32; text-align:center'><p style='color:white'>Copyright © 2026 ICAR-Indian Agricultural Statistics Research Institute, New Delhi-110012. All rights reserved.</p></div>", unsafe_allow_html=True)
