@@ -20,6 +20,7 @@ m.Map = type("Map", (dict,), {})
 # Force the system to use our dummy module
 sys.modules["aaindex._aaindex_matrix"] = m
 
+import streamlit as st
 import pandas as pd
 import protpy
 import re
