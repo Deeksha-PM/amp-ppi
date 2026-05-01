@@ -1,35 +1,25 @@
 import os
-import json
 import sys
-import streamlit as st
+from types import ModuleType
 
-# --- EMERGENCY PATCH FOR AAINDEX PERMISSION ERROR ---
-# We manually inject a patched version of AAIndex into the system modules
-# to prevent it from ever trying to write to the read-only site-packages.
+m = ModuleType("aaindex._aaindex_matrix")
+
+class MockMap(dict):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 class MockAAIndex:
-    def __init__(self, aaindex_file):
-        self.aaindex_file = aaindex_file
-        self.aaindex_module_path = os.path.dirname(os.path.abspath(__file__))
-        self.data_dir = "data"
-        self.aaindex_json = self.parse_aaindex()
-
-    def _parse_aaindex_file(self, content):
-        # Basic parsing logic for AAIndex format
-        data = {}
-        # ... minimal implementation to satisfy protpy requirements
-        return data
-
+    
+    def __init__(self, name):
+        self.aaindex_file = name
+        self.aaindex_json = {}
     def parse_aaindex(self):
-        # Redirect all writes to /tmp/ which is writable on Streamlit Cloud
-        target_path = os.path.join("/tmp", f"{self.aaindex_file}.json")
-        # Return empty dict or pre-loaded data if needed to avoid the crash
         return {}
 
-# We create a dummy module structure to intercept the import
-from types import ModuleType
-m = ModuleType("aaindex._aaindex_matrix")
+m.Map = MockMap
 m.AAIndex = MockAAIndex
+
 sys.modules["aaindex._aaindex_matrix"] = m
 
 import pandas as pd
