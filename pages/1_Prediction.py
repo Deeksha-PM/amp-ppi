@@ -277,7 +277,7 @@ if 'results' in st.session_state and st.session_state['results'] is not None:
     st.dataframe(df.style.background_gradient(subset=['Interaction_Score'], cmap='RdYlGn'), use_container_width=True)
     
     csv = df.to_csv(index=False).encode('utf-8')
-    st.download_button("📥 Download Predictions CSV", csv, "results.csv", "text/csv")
+    st.download_button("Download Predictions CSV", csv, "results.csv", "text/csv")
 
 st.text("")
 st.markdown("<div style='background-color:#32CD32; text-align:center'><p style='color:white'>Copyright © 2026 ICAR-Indian Agricultural Statistics Research Institute, New Delhi-110012. All rights reserved.</p></div>", unsafe_allow_html=True)
