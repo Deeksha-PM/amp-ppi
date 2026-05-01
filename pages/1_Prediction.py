@@ -1,3 +1,6 @@
+import os
+os.environ['AAINDEX_DATAPATH'] = os.getcwd()
+
 import streamlit as st
 import pandas as pd
 import protpy
@@ -6,7 +9,6 @@ import joblib
 import plotly.express as px
 from Bio import SeqIO
 from io import StringIO
-import os
 
 st.set_page_config( page_title="AMP-PPI", initial_sidebar_state="expanded", layout="wide")
 col1, col2 = st.columns([1.5, 20])
