@@ -34,7 +34,6 @@ st.markdown(
         </div>
     </a>
     """,
-    unsafe_allow_image_to_markdown=True,
     unsafe_allow_html=True
 )
 
