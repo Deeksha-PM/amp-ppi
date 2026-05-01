@@ -106,9 +106,9 @@ def process_fasta_buffer(buffer, min_l, max_l):
             records.append({"id": r.id, "seq": cleaned})
     return records
 
-st.title("🧬 AMP-Protein Interaction Predictor")
+st.title("AMP-Protein Interaction Predictor")
 
-st.info("New here? Download example files to see how the data should be formatted.")
+st.info("Download example files to see how the data should be formatted.")
 c_dl1, c_dl2 = st.columns(2)
 with c_dl1:
     if os.path.exists("static/data/example_amp.fasta"):
@@ -121,7 +121,7 @@ with c_dl2:
 
 st.markdown("---")
 
-st.subheader("🛠️ Preprocessing Filters")
+st.subheader("Preprocessing Filters")
 col_s1, col_s2 = st.columns(2)
 with col_s1:
     amp_range = st.slider("AMP Length Filter", 5, 200, (5, 100), help="Strict length check for AMPs.")
