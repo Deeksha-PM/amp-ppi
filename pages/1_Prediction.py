@@ -108,16 +108,16 @@ def process_fasta_buffer(buffer, min_l, max_l):
 
 st.title("🧬 AMP-Protein Interaction Predictor")
 
-st.info("💡 New here? Download example files to see how the data should be formatted.")
+st.info("New here? Download example files to see how the data should be formatted.")
 c_dl1, c_dl2 = st.columns(2)
 with c_dl1:
     if os.path.exists("static/data/example_amp.fasta"):
         with open("static/data/example_amp.fasta", "rb") as f:
-            st.download_button("📂 Download Example AMPs (FASTA)", f, "example_amps.fasta")
+            st.download_button("Download Example AMPs (FASTA)", f, "example_amps.fasta")
 with c_dl2:
     if os.path.exists("static/data/example_protein.fasta"):
         with open("static/data/example_protein.fasta", "rb") as f:
-            st.download_button("📂 Download Example Proteins (FASTA)", f, "example_proteins.fasta")
+            st.download_button("Download Example Proteins (FASTA)", f, "example_proteins.fasta")
 
 st.markdown("---")
 
@@ -130,10 +130,10 @@ with col_s2:
 
 st.markdown("---")
 
-tab1, tab2, tab3 = st.tabs(["⌨️ Single Pair", "📂 Bulk Combinations", "🔗 Paired Upload"])
+tab1, tab2, tab3 = st.tabs(["Single Pair", "All Combinations", "Paired Prediction"])
 
 with tab1:
-    st.subheader("Manual Input")
+    st.subheader("Paste the Sequence")
     c1, c2 = st.columns(2)
     with c1:
         s_amp = st.text_area("AMP Sequence", placeholder="KLSPSL...")
@@ -161,7 +161,7 @@ with tab1:
                 st.error("Sequences do not meet the length requirements set in the sliders above.")
 
 with tab2:
-    st.subheader("Discovery Mode (All-vs-All)")
+    st.subheader("All Combination")
     u1, u2 = st.columns(2)
     with u1:
         file_amp = st.file_uploader("Upload amp.fasta", type=["fasta"], key="bulk_u_amp")
@@ -193,7 +193,7 @@ with tab2:
                 st.session_state['results'] = run_prediction(pd.DataFrame(rows))
 
 with tab3:
-    st.subheader("🔗 Paired Prediction (1-to-1)")
+    st.subheader("Paired Prediction")
     st.caption("Upload separate files to predict specific pairs (AMP 1 with Protein 1, etc.) instead of all combinations.")
     
     u3_col1, u3_col2 = st.columns(2)
@@ -203,7 +203,7 @@ with tab3:
         file_prot_p = st.file_uploader("Upload protein.fasta", type=["fasta"], key="paired_u_prot")
     
     # Example trigger for this specific tab
-    run_example_paired = st.button("🚀 Run Example Paired Prediction")
+    run_example_paired = st.button("Run Example Paired Prediction")
 
     if st.button("Predict Pairs", type="primary") or run_example_paired:
         # Determine source: Example files or User Uploads
@@ -259,7 +259,7 @@ with tab3:
 if 'results' in st.session_state and st.session_state['results'] is not None:
     df = st.session_state['results']
     st.markdown("---")
-    st.subheader("📊 Results & Analytics")
+    st.subheader("Results & Analytics")
     
     c_g1, c_g2 = st.columns([2, 1])
     with c_g1:
