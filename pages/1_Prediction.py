@@ -4,22 +4,20 @@ from types import ModuleType
 
 m = ModuleType("aaindex._aaindex_matrix")
 
-class MockMap(dict):
+class MockBase:
     
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-class MockAAIndex:
-    
-    def __init__(self, name):
-        self.aaindex_file = name
         self.aaindex_json = {}
     def parse_aaindex(self):
         return {}
+    def _parse_aaindex_file(self, content):
+        return {}
 
-m.Map = MockMap
-m.AAIndex = MockAAIndex
+m._AAIndexMatrix = MockBase
+m.AAIndex = MockBase
+m.Map = type("Map", (dict,), {})
 
+# Force the system to use our dummy module
 sys.modules["aaindex._aaindex_matrix"] = m
 
 import pandas as pd
