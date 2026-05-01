@@ -1,7 +1,28 @@
 import os
-os.environ['AAINDEX_DATAPATH'] = os.getcwd()
-
+import json
 import streamlit as st
+
+# --- CRITICAL WORKAROUND FOR STREAMLIT CLOUD PERMISSION ERROR ---
+# This must run BEFORE importing protpy
+import aaindex._aaindex_matrix
+
+def patched_parse_aaindex(self):
+    """Redirects aaindex JSON caching to the writable /tmp directory."""
+    # Original logic to get raw data
+    raw_data_path = os.path.join(self.aaindex_module_path, self.data_dir, self.aaindex_file)
+    with open(raw_data_path) as f:
+        aaindex_json = self._parse_aaindex_file(f.read())
+    
+    # Redirect write path to /tmp
+    json_out_path = os.path.join("/tmp", f"{self.aaindex_file}.json")
+    with open(json_out_path, "w") as output_f:
+        json.dump(aaindex_json, output_f, indent=4, sort_keys=True)
+    
+    return aaindex_json
+
+# Apply the patch to the AAIndex class
+aaindex._aaindex_matrix.AAIndex.parse_aaindex = patched_parse_aaindex
+
 import pandas as pd
 import protpy
 import re
