@@ -58,9 +58,9 @@ with col2_1:
         with colInCon_2:
             st.markdown('''**Dr. Shashi Bhushan Lal**  
                         Principal Scientist  
-                        ICT Unit, Indian Council of Agricultural Research  
+                        IT/ICT Unit, Indian Council of Agricultural Research  
                         Pusa, New Delhi-110012, India.  
-                        Contact mail: sb.lal@icar.org.in''')
+                        Contact mail: shashibhushan.iasri@icar.org.in''')
             
     with st.container(border=True):
         colInCon_1, colInCon_2 = st.columns([1, 3])
