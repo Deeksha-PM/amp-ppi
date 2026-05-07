@@ -25,11 +25,11 @@ with col1_1:
 
 with col2_1:
      with st.container(border=True, height=160):
-        st.markdown('''<div style='text-align:center'><b>Dr. Shashi Bhusan Lal</b></br>
-                    Principal Scientist, ICAT-Unit </br>  
+        st.markdown('''<div style='text-align:center'><b>Dr. Shashi Bhushan Lal</b></br>
+                    Principal Scientist, IT/ICT Unit </br>  
                     Indian Council of Agricultural Research </br>
                     Pusa, New Delhi-110012  </br>
-                    Mail Id: sb.lal@icar.org.in</div>''', unsafe_allow_html=True)
+                    Mail Id: shashibhushan.iasri@icar.org.in</div>''', unsafe_allow_html=True)
 
 
 st.text("")
